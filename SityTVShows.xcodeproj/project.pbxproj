@@ -9,13 +9,33 @@
 /* Begin PBXBuildFile section */
 		341B645B285EB7A200B4B95E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B645A285EB7A200B4B95E /* AppDelegate.swift */; };
 		341B645D285EB7A200B4B95E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B645C285EB7A200B4B95E /* SceneDelegate.swift */; };
-		341B645F285EB7A200B4B95E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B645E285EB7A200B4B95E /* ViewController.swift */; };
-		341B6462285EB7A200B4B95E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 341B6460285EB7A200B4B95E /* Main.storyboard */; };
 		341B6464285EB7A600B4B95E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 341B6463285EB7A600B4B95E /* Assets.xcassets */; };
 		341B6467285EB7A600B4B95E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 341B6465285EB7A600B4B95E /* LaunchScreen.storyboard */; };
 		341B6472285EB7A600B4B95E /* SityTVShowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B6471285EB7A600B4B95E /* SityTVShowsTests.swift */; };
 		341B647C285EB7A600B4B95E /* SityTVShowsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B647B285EB7A600B4B95E /* SityTVShowsUITests.swift */; };
 		341B647E285EB7A600B4B95E /* SityTVShowsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B647D285EB7A600B4B95E /* SityTVShowsUITestsLaunchTests.swift */; };
+		341B6493285EE18700B4B95E /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B6492285EE18700B4B95E /* HomeTabBarController.swift */; };
+		341B6498285EE1D800B4B95E /* ShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B6497285EE1D800B4B95E /* ShowsViewController.swift */; };
+		341B649A285EE1DF00B4B95E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B6499285EE1DF00B4B95E /* SearchViewController.swift */; };
+		341B649C285EE1E800B4B95E /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B649B285EE1E800B4B95E /* FavoritesViewController.swift */; };
+		341B649F285EEA0100B4B95E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B649E285EEA0100B4B95E /* BaseViewController.swift */; };
+		341B64A2285EEAD000B4B95E /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64A1285EEAD000B4B95E /* UIViewExtensions.swift */; };
+		341B64A5285EF5E400B4B95E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 341B64A4285EF5E400B4B95E /* Kingfisher */; };
+		341B64A7285F049300B4B95E /* GenericTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64A6285F049300B4B95E /* GenericTableViewCell.swift */; };
+		341B64A9285F057600B4B95E /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64A8285F057600B4B95E /* UITableViewExtensions.swift */; };
+		341B64AB285F062100B4B95E /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64AA285F062100B4B95E /* CardView.swift */; };
+		341B64AF285F066200B4B95E /* ListedShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64AE285F066200B4B95E /* ListedShow.swift */; };
+		341B64B1285F06AC00B4B95E /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64B0285F06AC00B4B95E /* Image.swift */; };
+		341B64B4285F145000B4B95E /* TVMazeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64B3285F145000B4B95E /* TVMazeRepository.swift */; };
+		341B64B6285F152400B4B95E /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64B5285F152400B4B95E /* Networking.swift */; };
+		341B64BA285FE6E100B4B95E /* ShowsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64B9285FE6E100B4B95E /* ShowsViewModel.swift */; };
+		341B64BD285FE7F800B4B95E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 341B64BC285FE7F800B4B95E /* RxCocoa */; };
+		341B64BF285FE7F800B4B95E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 341B64BE285FE7F800B4B95E /* RxRelay */; };
+		341B64C1285FE7F800B4B95E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 341B64C0285FE7F800B4B95E /* RxSwift */; };
+		341B64C3285FF66E00B4B95E /* StarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64C2285FF66D00B4B95E /* StarImageView.swift */; };
+		341B64C5285FFA9C00B4B95E /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64C4285FFA9C00B4B95E /* RatingView.swift */; };
+		341B64C72860020A00B4B95E /* ComparableExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64C62860020A00B4B95E /* ComparableExtensions.swift */; };
+		341B64CA2860482200B4B95E /* ShowDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341B64C92860482200B4B95E /* ShowDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +59,6 @@
 		341B6457285EB7A200B4B95E /* SityTVShows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SityTVShows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		341B645A285EB7A200B4B95E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		341B645C285EB7A200B4B95E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		341B645E285EB7A200B4B95E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		341B6461285EB7A200B4B95E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		341B6463285EB7A600B4B95E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		341B6466285EB7A600B4B95E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		341B6468285EB7A600B4B95E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +67,24 @@
 		341B6477285EB7A600B4B95E /* SityTVShowsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SityTVShowsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		341B647B285EB7A600B4B95E /* SityTVShowsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SityTVShowsUITests.swift; sourceTree = "<group>"; };
 		341B647D285EB7A600B4B95E /* SityTVShowsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SityTVShowsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		341B6492285EE18700B4B95E /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		341B6497285EE1D800B4B95E /* ShowsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsViewController.swift; sourceTree = "<group>"; };
+		341B6499285EE1DF00B4B95E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		341B649B285EE1E800B4B95E /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		341B649E285EEA0100B4B95E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		341B64A1285EEAD000B4B95E /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		341B64A6285F049300B4B95E /* GenericTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableViewCell.swift; sourceTree = "<group>"; };
+		341B64A8285F057600B4B95E /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
+		341B64AA285F062100B4B95E /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		341B64AE285F066200B4B95E /* ListedShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListedShow.swift; sourceTree = "<group>"; };
+		341B64B0285F06AC00B4B95E /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		341B64B3285F145000B4B95E /* TVMazeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVMazeRepository.swift; sourceTree = "<group>"; };
+		341B64B5285F152400B4B95E /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		341B64B9285FE6E100B4B95E /* ShowsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowsViewModel.swift; sourceTree = "<group>"; };
+		341B64C2285FF66D00B4B95E /* StarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarImageView.swift; sourceTree = "<group>"; };
+		341B64C4285FFA9C00B4B95E /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		341B64C62860020A00B4B95E /* ComparableExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparableExtensions.swift; sourceTree = "<group>"; };
+		341B64C92860482200B4B95E /* ShowDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +92,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				341B64BF285FE7F800B4B95E /* RxRelay in Frameworks */,
+				341B64BD285FE7F800B4B95E /* RxCocoa in Frameworks */,
+				341B64C1285FE7F800B4B95E /* RxSwift in Frameworks */,
+				341B64A5285EF5E400B4B95E /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,13 +139,14 @@
 		341B6459285EB7A200B4B95E /* SityTVShows */ = {
 			isa = PBXGroup;
 			children = (
+				341B64CB28604FC200B4B95E /* Supporting Files */,
+				341B64AC285F064B00B4B95E /* Data */,
+				341B649D285EE9F400B4B95E /* Bases */,
+				341B64A0285EEAC500B4B95E /* Extensions */,
+				341B648E285EE0D000B4B95E /* Screens */,
+				341B648F285EE0D600B4B95E /* Views */,
 				341B645A285EB7A200B4B95E /* AppDelegate.swift */,
 				341B645C285EB7A200B4B95E /* SceneDelegate.swift */,
-				341B645E285EB7A200B4B95E /* ViewController.swift */,
-				341B6460285EB7A200B4B95E /* Main.storyboard */,
-				341B6463285EB7A600B4B95E /* Assets.xcassets */,
-				341B6465285EB7A600B4B95E /* LaunchScreen.storyboard */,
-				341B6468285EB7A600B4B95E /* Info.plist */,
 			);
 			path = SityTVShows;
 			sourceTree = "<group>";
@@ -127,6 +168,125 @@
 			path = SityTVShowsUITests;
 			sourceTree = "<group>";
 		};
+		341B648E285EE0D000B4B95E /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				341B6490285EE0F500B4B95E /* Home */,
+				341B64C82860480F00B4B95E /* ShowDetails */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		341B648F285EE0D600B4B95E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				341B64A6285F049300B4B95E /* GenericTableViewCell.swift */,
+				341B64AA285F062100B4B95E /* CardView.swift */,
+				341B64C2285FF66D00B4B95E /* StarImageView.swift */,
+				341B64C4285FFA9C00B4B95E /* RatingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		341B6490285EE0F500B4B95E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				341B6491285EE15A00B4B95E /* Shows */,
+				341B6494285EE1B800B4B95E /* Search */,
+				341B6496285EE1C700B4B95E /* Favorites */,
+				341B6492285EE18700B4B95E /* HomeTabBarController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		341B6491285EE15A00B4B95E /* Shows */ = {
+			isa = PBXGroup;
+			children = (
+				341B6497285EE1D800B4B95E /* ShowsViewController.swift */,
+				341B64B9285FE6E100B4B95E /* ShowsViewModel.swift */,
+			);
+			path = Shows;
+			sourceTree = "<group>";
+		};
+		341B6494285EE1B800B4B95E /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				341B6499285EE1DF00B4B95E /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		341B6496285EE1C700B4B95E /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				341B649B285EE1E800B4B95E /* FavoritesViewController.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		341B649D285EE9F400B4B95E /* Bases */ = {
+			isa = PBXGroup;
+			children = (
+				341B649E285EEA0100B4B95E /* BaseViewController.swift */,
+			);
+			path = Bases;
+			sourceTree = "<group>";
+		};
+		341B64A0285EEAC500B4B95E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				341B64A1285EEAD000B4B95E /* UIViewExtensions.swift */,
+				341B64A8285F057600B4B95E /* UITableViewExtensions.swift */,
+				341B64C62860020A00B4B95E /* ComparableExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		341B64AC285F064B00B4B95E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				341B64AD285F065600B4B95E /* Models */,
+				341B64B2285F143000B4B95E /* Repositories */,
+				341B64B5285F152400B4B95E /* Networking.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		341B64AD285F065600B4B95E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				341B64AE285F066200B4B95E /* ListedShow.swift */,
+				341B64B0285F06AC00B4B95E /* Image.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		341B64B2285F143000B4B95E /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				341B64B3285F145000B4B95E /* TVMazeRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		341B64C82860480F00B4B95E /* ShowDetails */ = {
+			isa = PBXGroup;
+			children = (
+				341B64C92860482200B4B95E /* ShowDetailsViewController.swift */,
+			);
+			path = ShowDetails;
+			sourceTree = "<group>";
+		};
+		341B64CB28604FC200B4B95E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				341B6463285EB7A600B4B95E /* Assets.xcassets */,
+				341B6465285EB7A600B4B95E /* LaunchScreen.storyboard */,
+				341B6468285EB7A600B4B95E /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +303,12 @@
 			dependencies = (
 			);
 			name = SityTVShows;
+			packageProductDependencies = (
+				341B64A4285EF5E400B4B95E /* Kingfisher */,
+				341B64BC285FE7F800B4B95E /* RxCocoa */,
+				341B64BE285FE7F800B4B95E /* RxRelay */,
+				341B64C0285FE7F800B4B95E /* RxSwift */,
+			);
 			productName = SityTVShows;
 			productReference = 341B6457285EB7A200B4B95E /* SityTVShows.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +381,10 @@
 				Base,
 			);
 			mainGroup = 341B644E285EB7A200B4B95E;
+			packageReferences = (
+				341B64A3285EF5E400B4B95E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				341B64BB285FE7F800B4B95E /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 341B6458285EB7A200B4B95E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,7 +403,6 @@
 			files = (
 				341B6467285EB7A600B4B95E /* LaunchScreen.storyboard in Resources */,
 				341B6464285EB7A600B4B95E /* Assets.xcassets in Resources */,
-				341B6462285EB7A200B4B95E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +427,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				341B645F285EB7A200B4B95E /* ViewController.swift in Sources */,
+				341B649A285EE1DF00B4B95E /* SearchViewController.swift in Sources */,
+				341B64B6285F152400B4B95E /* Networking.swift in Sources */,
+				341B64C5285FFA9C00B4B95E /* RatingView.swift in Sources */,
+				341B649C285EE1E800B4B95E /* FavoritesViewController.swift in Sources */,
+				341B64C3285FF66E00B4B95E /* StarImageView.swift in Sources */,
+				341B64A9285F057600B4B95E /* UITableViewExtensions.swift in Sources */,
+				341B64B1285F06AC00B4B95E /* Image.swift in Sources */,
 				341B645B285EB7A200B4B95E /* AppDelegate.swift in Sources */,
+				341B649F285EEA0100B4B95E /* BaseViewController.swift in Sources */,
+				341B64B4285F145000B4B95E /* TVMazeRepository.swift in Sources */,
+				341B64AB285F062100B4B95E /* CardView.swift in Sources */,
+				341B64BA285FE6E100B4B95E /* ShowsViewModel.swift in Sources */,
+				341B64C72860020A00B4B95E /* ComparableExtensions.swift in Sources */,
+				341B64A7285F049300B4B95E /* GenericTableViewCell.swift in Sources */,
+				341B64A2285EEAD000B4B95E /* UIViewExtensions.swift in Sources */,
+				341B6498285EE1D800B4B95E /* ShowsViewController.swift in Sources */,
+				341B64CA2860482200B4B95E /* ShowDetailsViewController.swift in Sources */,
+				341B64AF285F066200B4B95E /* ListedShow.swift in Sources */,
 				341B645D285EB7A200B4B95E /* SceneDelegate.swift in Sources */,
+				341B6493285EE18700B4B95E /* HomeTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +483,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		341B6460285EB7A200B4B95E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				341B6461285EB7A200B4B95E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		341B6465285EB7A600B4B95E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -443,7 +621,8 @@
 				INFOPLIST_FILE = SityTVShows/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -455,7 +634,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -470,7 +649,8 @@
 				INFOPLIST_FILE = SityTVShows/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -482,7 +662,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -598,6 +778,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		341B64A3285EF5E400B4B95E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		341B64BB285FE7F800B4B95E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		341B64A4285EF5E400B4B95E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 341B64A3285EF5E400B4B95E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		341B64BC285FE7F800B4B95E /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 341B64BB285FE7F800B4B95E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		341B64BE285FE7F800B4B95E /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 341B64BB285FE7F800B4B95E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		341B64C0285FE7F800B4B95E /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 341B64BB285FE7F800B4B95E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 341B644F285EB7A200B4B95E /* Project object */;
 }
