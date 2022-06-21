@@ -18,7 +18,7 @@ class ShowsViewModel {
     
     // MARK: - Actions
     private let onShowErrorRelay = PublishRelay<String>()
-    private let onShowDetailsRelay = PublishRelay<Int>()
+    private let onShowDetailsRelay = PublishRelay<ShowDetailsViewModel>()
     
     // MARK: - State
     private let showsRelay = BehaviorRelay<[ListedShow]>(value: [])
@@ -58,7 +58,9 @@ class ShowsViewModel {
         guard index < showsRelay.value.count else { return }
         let item = showsRelay.value[index]
         
-        onShowDetailsRelay.accept(item.id)
+        let detailsViewModel = ShowDetailsViewModel(showId: item.id, repository: repository)
+        
+        onShowDetailsRelay.accept(detailsViewModel)
     }
     
     // MARK: - Internal functions
@@ -79,8 +81,7 @@ class ShowsViewModel {
                     // Empty list has been returned, which means there are no more items to be fetched
                     self.hasNextPage = false
                 }
-            case .failure(_):
-                // TODO: proper logging
+            case .failure:
                 self.onShowErrorRelay.accept("An error has occurred while fetching the shows list.")
             }
         }

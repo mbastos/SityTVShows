@@ -39,7 +39,10 @@ class ShowsViewController: BaseViewController {
         return tableView
     }()
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         title = "Shows"
         navigationItem.largeTitleDisplayMode = .always
         view.backgroundColor = .systemBackground
@@ -47,11 +50,20 @@ class ShowsViewController: BaseViewController {
         setupSubviews()
         
         bindTableView()
-        setupObservables()
+        bindViewModel()
         
         viewModel.didLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // The user could have added/removed favorites in another screen, so we force a reload
+        // to make sure the correct information is being presented
+        tableView.reloadData()
+    }
+    
+    // MARK: - Methods
     private func setupSubviews() {
         view.addSubview(tableView)
         tableView.fillSafeArea()
@@ -76,12 +88,12 @@ class ShowsViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    private func setupObservables() {
+    private func bindViewModel() {
         viewModel.isLoading.subscribe(onNext: { [weak self] (isLoading) in
             if isLoading {
-                self?.addLoadingFooter()
+                self?.tableView.addLoadingFooter()
             } else {
-                self?.removeLoadingFooter()
+                self?.tableView.removeLoadingFooter()
             }
         }).disposed(by: disposeBag)
         
@@ -94,21 +106,9 @@ class ShowsViewController: BaseViewController {
                 })
         }).disposed(by: disposeBag)
         
-        viewModel.onShowDetails.subscribe(onNext: { [weak self] (id) in
-            self?.show(ShowDetailsViewController(), sender: self)
+        viewModel.onShowDetails.subscribe(onNext: { [weak self] (detailsViewModel) in
+            self?.show(ShowDetailsViewController(viewModel: detailsViewModel), sender: self)
         }).disposed(by: disposeBag)
-    }
-    
-    private func addLoadingFooter() {
-        let activityIndicator = UIActivityIndicatorView(frame: CGRect(
-            x: 0, y: 0, width: tableView.bounds.width, height: 80))
-        activityIndicator.startAnimating()
-        
-        tableView.tableFooterView = activityIndicator
-    }
-    
-    private func removeLoadingFooter() {
-        tableView.tableFooterView = nil
     }
 }
 

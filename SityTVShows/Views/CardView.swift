@@ -10,6 +10,18 @@ import Kingfisher
 
 enum CardViewType {
     case show(ListedShow)
+    case person(Person)
+}
+
+extension CardViewType {
+    init(fromSearchResult item: SearchResultItem) {
+        switch item {
+        case .show(let show):
+            self = .show(show)
+        case .person(let person):
+            self = .person(person)
+        }
+    }
 }
 
 class CardView: UIView {
@@ -30,10 +42,6 @@ class CardView: UIView {
             setupData()
         }
     }
-    
-    lazy var placeholderImage = UIImage(named: "ic_no_image")?.withRenderingMode(.alwaysTemplate)
-    lazy var heartImageFilled = UIImage(systemName: "heart.fill")
-    lazy var heartImage = UIImage(systemName: "heart")
     
     // MARK: - Initializers
     init(type: CardViewType) {
@@ -75,7 +83,7 @@ class CardView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
-        label.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        label.configureSecondaryTitle()
         return label
     }()
     
@@ -89,17 +97,30 @@ class CardView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1)
+        label.configureSecondaryText()
         return label
     }()
     
-    lazy var heartView: UIImageView = {
-        let view = UIImageView(image: heartImageFilled)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.tintColor = .systemRed
-        return view
+    lazy var favoriteButton: FavoriteButton = {
+        let button = FavoriteButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
+    
+    lazy var personInfoStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.alignment = .leading
+        return stackView
+    }()
+    
+    lazy var countryLabel = createLabel()
+    
+    lazy var birthdayLabel = createLabel()
+    
+    lazy var genderLabel = createLabel()
     
     // MARK: - Setup
     private func setupSubviews() {
@@ -108,7 +129,10 @@ class CardView: UIView {
         addSubview(titleLabel)
         addSubview(ratingStarsView)
         addSubview(ratingLabel)
-        addSubview(heartView)
+        addSubview(favoriteButton)
+        addSubview(personInfoStackView)
+        
+        [countryLabel, birthdayLabel, genderLabel].forEach({ personInfoStackView.addArrangedSubview($0) })
         
         let imageWidthConstraint = imageView.widthAnchor.constraint(
             equalTo: self.widthAnchor,
@@ -133,6 +157,10 @@ class CardView: UIView {
             titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: Constants.cardInset),
             titleLabel.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -Constants.cardInset),
             
+            personInfoStackView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            personInfoStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.cardInset),
+            personInfoStackView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
+            
             ratingStarsView.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: Constants.cardInset),
             ratingStarsView.bottomAnchor.constraint(equalTo: card.bottomAnchor, constant: -Constants.cardInset),
             ratingStarsView.widthAnchor.constraint(equalToConstant: Constants.ratingStarsWidth),
@@ -140,36 +168,39 @@ class CardView: UIView {
             ratingLabel.leadingAnchor.constraint(equalTo: ratingStarsView.trailingAnchor, constant: Constants.ratingSpacing),
             ratingLabel.centerYAnchor.constraint(equalTo: ratingStarsView.centerYAnchor),
             
-            heartView.leadingAnchor.constraint(greaterThanOrEqualTo: ratingLabel.trailingAnchor),
-            heartView.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -Constants.cardInset),
-            heartView.bottomAnchor.constraint(equalTo: card.bottomAnchor, constant: -Constants.cardInset)
+            favoriteButton.leadingAnchor.constraint(greaterThanOrEqualTo: ratingLabel.trailingAnchor),
+            favoriteButton.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -Constants.cardInset),
+            favoriteButton.bottomAnchor.constraint(equalTo: card.bottomAnchor, constant: -Constants.cardInset)
         ])
+    }
+    
+    private func createLabel() -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.configureSecondaryText()
+        return label
     }
     
     private func setupData() {
         switch type {
         case .show(let listedShow):
             titleLabel.text = listedShow.name
-            setImage(url: listedShow.image?.medium)
+            imageView.setRemoteImage(atURL: listedShow.image?.medium, withContentMode: .scaleAspectFill)
             setRating(listedShow.rating)
             
-            // TODO: actually find out if this series is saved as a favorite
-            setIsFavorite(Bool.random())
-        }
-    }
-    
-    private func setImage(url: URL?) {
-        if let imageURL = url {
-            imageView.image = nil
-            imageView.contentMode = .scaleAspectFill
-            imageView.kf.setImage(with: imageURL)
-        } else {
-            imageView.contentMode = .center
-            // There could be a Kingfisher load in progress, so we cancel it this way
-            let resource: Resource? = nil
-            imageView.kf.setImage(with: resource)
-            imageView.image = placeholderImage
-            imageView.tintColor = .systemGray
+            favoriteButton.isHidden = false
+            favoriteButton.show = FavoriteShow(id: listedShow.id, name: listedShow.name)
+            
+            personInfoStackView.isHidden = true
+            
+        case .person(let person):
+            titleLabel.text = person.name
+            imageView.setRemoteImage(atURL: person.image?.medium, withContentMode: .scaleAspectFill)
+            setRating(nil)
+            favoriteButton.isHidden = true
+            
+            personInfoStackView.isHidden = false
+            setPersonInfo(person)
         }
     }
     
@@ -185,18 +216,27 @@ class CardView: UIView {
         }
     }
     
-    private func setIsFavorite(_ isFavorite: Bool?) {
-        if let isFavorite = isFavorite {
-            heartView.isHidden = false
-            if isFavorite {
-                heartView.image = heartImageFilled
-                heartView.tintColor = .systemRed
-            } else {
-                heartView.image = heartImage
-                heartView.tintColor = .systemGray
-            }
+    private func setPersonInfo(_ person: Person) {
+        if let country = person.country?.name {
+            countryLabel.isHidden = false
+            countryLabel.text = "Country: \(country)"
         } else {
-            heartView.isHidden = true
+            countryLabel.isHidden = true
+        }
+        
+        if let birthday = person.birthday {
+            birthdayLabel.isHidden = false
+            let formattedDate = DateFormatter.longDate.string(from: birthday)
+            birthdayLabel.text = "Birthday: \(formattedDate)"
+        } else {
+            birthdayLabel.isHidden = true
+        }
+        
+        if let gender = person.gender {
+            genderLabel.isHidden = false
+            genderLabel.text = "Gender: \(gender)"
+        } else {
+            genderLabel.isHidden = true
         }
     }
 }

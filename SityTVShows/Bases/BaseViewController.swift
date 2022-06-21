@@ -8,6 +8,8 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+    weak var errorAlert: UIAlertController?
+    
     private lazy var backgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -42,6 +44,9 @@ class BaseViewController: UIViewController {
     }
     
     internal func startLoading() {
+        guard activityIndicator.superview == nil else {
+            return
+        }
         setupBackgroundView()
         setupActivityIndicator()
         activityIndicator.startAnimating()
@@ -53,18 +58,25 @@ class BaseViewController: UIViewController {
     }
     
     internal func stopLoading() {
-        activityIndicator.stopAnimating()
-        UIView.animate(
-            withDuration: 0.5,
-            animations: { self.backgroundView.alpha = 0.0 },
-            completion: { _ in
-                self.backgroundView.removeFromSuperview()
-                self.activityIndicator.removeFromSuperview()
-            })
+        if activityIndicator.superview != nil {
+            activityIndicator.stopAnimating()
+            self.backgroundView.removeFromSuperview()
+            self.activityIndicator.removeFromSuperview()
+        }
     }
     
     internal func showErrorAlert(message: String, onTryAgain: @escaping () -> Void, onCancel: (() -> Void)? = nil) {
-        let alertController = UIAlertController(title: "Oops! An error has occurred", message: message, preferredStyle: .alert)
+        if let errorAlert = errorAlert {
+            errorAlert.dismiss(animated: false) {
+                self.presentErrorAlert(message: message, onTryAgain: onTryAgain, onCancel: onCancel)
+            }
+        } else {
+            self.presentErrorAlert(message: message, onTryAgain: onTryAgain, onCancel: onCancel)
+        }
+    }
+    
+    private func presentErrorAlert(message: String, onTryAgain: @escaping () -> Void, onCancel: (() -> Void)? = nil) {
+        let alertController = UIAlertController(title: "Oops!", message: message, preferredStyle: .alert)
         
         let tryAgainAction = UIAlertAction(title: "Try again", style: .default) { _ in
             onTryAgain()
@@ -77,6 +89,9 @@ class BaseViewController: UIViewController {
         alertController.addAction(tryAgainAction)
         alertController.addAction(cancelAction)
         
+        guard presentedViewController == nil else { return }
         present(alertController, animated: true)
+        
+        self.errorAlert = alertController
     }
 }

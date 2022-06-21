@@ -20,6 +20,11 @@ class Networking {
         return decoder
     }()
     
+    private static var jsonEncoder: JSONEncoder = {
+        let decoder = JSONEncoder()
+        return decoder
+    }()
+    
     private static var urlSession: URLSession = {
         let session = URLSession(configuration: .default)
         return session
@@ -27,7 +32,7 @@ class Networking {
     
     static func request<T: Decodable>(
         responseType: T.Type,
-        urlString: String,
+        endpoint: Endpoint,
         completion: @escaping (_ result: Result<T, NetworkingError>) -> Void
     ) {
         let mainThreadCompletion = { result in
@@ -36,15 +41,22 @@ class Networking {
             }
         }
         
-        guard let url = URL(string: urlString) else {
+        guard let url = endpoint.fullURL else {
             mainThreadCompletion(.failure(.invalidURL))
             return
         }
         
-        let request = URLRequest(url: url)
+        print("---> HTTP Request: \(endpoint.method.httpMethod) \(url)")
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = endpoint.method.httpMethod
+        request.httpBody = endpoint.body
+        
         let session = URLSession(configuration: .default)
         
-        let task = session.dataTask(with: request) { data, _, error in
+        let task = session.dataTask(with: request) { data, response, error in
+            logResponse(response, originalURL: url)
+            
             if let error = error {
                 mainThreadCompletion(.failure(.requestError(error)))
                 return
@@ -66,5 +78,17 @@ class Networking {
         }
         
         task.resume()
+    }
+    
+    private static func logResponse(_ response: URLResponse?, originalURL: URL) {
+        guard let response = response else {
+            print("<--- HTTP Request failed: \(originalURL)")
+            return
+        }
+        
+        let statusCode = ((response as? HTTPURLResponse)?.statusCode).map(String.init) ?? "unknown status code"
+        let contentLength = response.expectedContentLength
+        let url = response.url?.absoluteString ?? "unknown URL"
+        print("<--- HTTP Response: \(url)\n\tStatus code: \(statusCode)\n\tContent Length: \(contentLength)")
     }
 }
