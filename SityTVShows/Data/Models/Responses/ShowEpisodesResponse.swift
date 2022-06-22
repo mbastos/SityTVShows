@@ -25,16 +25,21 @@ extension ShowEpisodeResponse {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let airdateString = try container.decode(String.self, forKey: .airdate)
-        let formatter = DateFormatter.yyyyMMdd
-        if let date = formatter.date(from: airdateString) {
-            airdate = date
+        let airdateString = try container.decodeIfPresent(String.self, forKey: .airdate)
+        if let airdateString = airdateString, !airdateString.isEmpty {
+            let formatter = DateFormatter.yyyyMMdd
+            if let date = formatter.date(from: airdateString) {
+                airdate = date
+            } else {
+                throw DecodingError.dataCorruptedError(
+                    forKey: .airdate,
+                    in: container,
+                    debugDescription: "Unexpected date format.")
+            }
         } else {
-            throw DecodingError.dataCorruptedError(
-                forKey: .airdate,
-                in: container,
-                debugDescription: "Unexpected date format.")
+            airdate = nil
         }
+        
         
         id = try container.decode(Int.self, forKey: .id)
         image = try container.decodeIfPresent(Image.self, forKey: .image)
