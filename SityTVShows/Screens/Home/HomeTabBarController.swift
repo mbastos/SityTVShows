@@ -9,8 +9,10 @@ import UIKit
 
 class HomeTabBarController: UITabBarController {
     
+    private let repository = TVMazeRepository()
+    
     lazy var shows: UIViewController = {
-        let vc = ShowsViewController()
+        let vc = ShowsViewController(viewModel: ShowsViewModel(repository: repository))
         vc.tabBarItem = UITabBarItem(
             title: "Shows",
             image: UIImage(systemName: "film"),
@@ -19,7 +21,7 @@ class HomeTabBarController: UITabBarController {
     }()
     
     lazy var search: UIViewController = {
-        let vc = SearchViewController()
+        let vc = SearchViewController(viewModel: SearchViewModel(repository: repository))
         vc.tabBarItem = UITabBarItem(
             title: "Search",
             image: UIImage(systemName: "magnifyingglass"),

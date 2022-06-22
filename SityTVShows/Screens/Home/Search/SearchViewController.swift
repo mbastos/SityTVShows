@@ -20,10 +20,19 @@ class SearchViewController: BaseViewController {
     
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    private let viewModel = SearchViewModel(repository: TVMazeRepository())
+    private let viewModel: SearchViewModel
+    
+    // MARK: - Initializers
+    init(viewModel: SearchViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Subviews
-    
     lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchBar.placeholder = "Type keywords here..."

@@ -20,7 +20,17 @@ class ShowsViewController: BaseViewController {
     
     // MARK: - Properties
     private let disposeBag = DisposeBag()
-    private let viewModel = ShowsViewModel(repository: TVMazeRepository())
+    private let viewModel: ShowsViewModel
+    
+    // MARK: - Initializers
+    init(viewModel: ShowsViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Subviews
     lazy var tableView: UITableView = {
