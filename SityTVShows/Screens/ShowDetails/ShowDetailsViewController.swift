@@ -75,10 +75,11 @@ class ShowDetailsViewController: BaseViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.registerHeaderView(SeasonHeaderView.self)
+        tableView.registerHeaderView(TitleHeaderView.self)
         tableView.registerCell(GenericTableViewCell<ShowHeaderView>.self)
         tableView.registerCell(GenericTableViewCell<ShowGenresView>.self)
         tableView.registerCell(GenericTableViewCell<SummaryView>.self)
@@ -166,7 +167,7 @@ extension ShowDetailsViewController: UITableViewDataSource, UITableViewDelegate 
         case .info:
             return UIView()
         case .season(let seasonIndex):
-            let view: SeasonHeaderView = tableView.dequeueReusableHeaderView()
+            let view: TitleHeaderView = tableView.dequeueReusableHeaderView()
             view.title = seasons?[seasonIndex].description
             return view
         }

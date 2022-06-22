@@ -11,7 +11,6 @@ class EpisodeDetailsViewController: BaseViewController {
     
     // MARK: - Constants
     private enum Constants {
-        static let margin: CGFloat = 16
         static let ratingStarsWidth: CGFloat = 100
     }
     
@@ -77,8 +76,8 @@ class EpisodeDetailsViewController: BaseViewController {
             episodeView.topAnchor.constraint(equalTo: safeArea.topAnchor),
             episodeView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             
-            ratingStarsView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: Constants.margin),
-            ratingStarsView.topAnchor.constraint(equalTo: episodeView.bottomAnchor, constant: Constants.margin),
+            ratingStarsView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: .defaultMargin),
+            ratingStarsView.topAnchor.constraint(equalTo: episodeView.bottomAnchor, constant: .defaultMargin),
             ratingStarsView.widthAnchor.constraint(equalToConstant: Constants.ratingStarsWidth),
             
             ratingLabel.leadingAnchor.constraint(equalTo: ratingStarsView.trailingAnchor, constant: 8),

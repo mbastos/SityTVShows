@@ -11,7 +11,6 @@ class ShowInfoView: UIView {
     
     // MARK: - Constants
     private enum Constants {
-        static let margin: CGFloat = 16
         static let spacing: CGFloat = 12
     }
     
@@ -68,9 +67,9 @@ class ShowInfoView: UIView {
         [status, schedule, type, language].forEach({ infoStackView.addArrangedSubview($0.stackView) })
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.margin),
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.margin),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.margin),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: .defaultMargin),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: .defaultMargin),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -.defaultMargin),
             
             infoStackView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             infoStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.spacing),

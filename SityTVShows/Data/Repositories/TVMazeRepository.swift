@@ -13,6 +13,7 @@ protocol ShowsRepository {
     func getShowEpisodes(showId: Int, completion: @escaping (Result<ShowEpisodesResponse, Error>) -> Void)
     func searchShows(query: String, completion: @escaping (Result<SearchShowsResponse, Error>) -> Void)
     func searchPeople(query: String, completion: @escaping (Result<SearchPeopleResponse, Error>) -> Void)
+    func getPersonCastCredits(personId: Int, completion: @escaping (Result<PersonCastCreditsResponse, Error>) -> Void)
 }
 
 class TVMazeRepository: ShowsRepository {
@@ -89,6 +90,22 @@ class TVMazeRepository: ShowsRepository {
             switch result {
             case .success(let people):
                 completion(.success(people))
+            case .failure(let error):
+                Logging.logError(error: error)
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getPersonCastCredits(
+        personId: Int,
+        completion: @escaping (Result<PersonCastCreditsResponse, Error>) -> Void
+    ) {
+        let endpoint = TVMazeEndpoint.personCastCredits(personId: personId)
+        Networking.request(responseType: PersonCastCreditsResponse.self, endpoint: endpoint) { result in
+            switch result {
+            case .success(let castCredits):
+                completion(.success(castCredits))
             case .failure(let error):
                 Logging.logError(error: error)
                 completion(.failure(error))

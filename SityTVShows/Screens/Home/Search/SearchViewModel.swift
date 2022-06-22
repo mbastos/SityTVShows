@@ -38,8 +38,8 @@ class SearchViewModel {
     
     // MARK: - Actions
     private let onShowErrorRelay = PublishRelay<String>()
-    private let onGoToShowDetailsRelay = PublishRelay<Int>()
-    private let onGoToPersonDetailsRelay = PublishRelay<Int>()
+    private let onGoToShowDetailsRelay = PublishRelay<ShowDetailsViewModel>()
+    private let onGoToPersonDetailsRelay = PublishRelay<PersonDetailsViewModel>()
     
     // MARK: - State
     private let itemsRelay = BehaviorRelay<[SearchResultItem]>(value: [])
@@ -76,10 +76,6 @@ class SearchViewModel {
             .subscribe(onNext: { [weak self] (text, _) in
                 self?.enqueueDataLoad(query: text)
             }).disposed(by: disposeBag)
-//        debouncedQuery
-//            .subscribe(onNext: { [weak self] (text) in
-//                self?.enqueueDataLoad(query: text)
-//            }).disposed(by: disposeBag)
     }
     
     // MARK: - External functions
@@ -94,9 +90,11 @@ class SearchViewModel {
         let item = itemsRelay.value[index]
         
         if case .show(let show) = item {
-            onGoToShowDetailsRelay.accept(show.id)
+            let showViewModel = ShowDetailsViewModel(showId: show.id, repository: repository)
+            onGoToShowDetailsRelay.accept(showViewModel)
         } else if case .person(let person) = item {
-            onGoToPersonDetailsRelay.accept(person.id)
+            let personViewModel = PersonDetailsViewModel(person: person, repository: repository)
+            onGoToPersonDetailsRelay.accept(personViewModel)
         }
     }
     

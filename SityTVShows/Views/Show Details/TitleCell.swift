@@ -8,11 +8,6 @@
 import UIKit
 
 class TitleCell: UITableViewCell {
-    // MARK: - Constants
-    private enum Constants {
-        static let margin: CGFloat = 16
-    }
-    
     // MARK: - Properties
     var title: String? {
         didSet {
@@ -30,7 +25,8 @@ class TitleCell: UITableViewCell {
     
     // MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         setupSubviews()
     }
     
@@ -43,9 +39,9 @@ class TitleCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.margin),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.margin),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.margin),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: .defaultMargin),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: .defaultMargin),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -.defaultMargin),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }

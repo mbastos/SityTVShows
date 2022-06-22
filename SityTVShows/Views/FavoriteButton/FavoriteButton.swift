@@ -26,6 +26,7 @@ class FavoriteButton: UIImageView {
     init() {
         super.init(frame: .zero)
         
+        contentMode = .center
         isUserInteractionEnabled = true
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTap(_:)))

@@ -10,7 +10,6 @@ import UIKit
 class ShowGenresView: UIView {
     // MARK: - Constants
     private enum Constants {
-        static let margin: CGFloat = 16
         static let spacing: CGFloat = 12
         static let collectionViewHeight: CGFloat = 18
     }
@@ -50,7 +49,7 @@ class ShowGenresView: UIView {
     
     lazy var collectionView: GenresCollectionView = {
         let collectionView = GenresCollectionView()
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: Constants.margin, bottom: 0, right: Constants.margin)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: .defaultMargin, bottom: 0, right: .defaultMargin)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -61,9 +60,9 @@ class ShowGenresView: UIView {
         addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.margin),
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.margin),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.margin),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: .defaultMargin),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: .defaultMargin),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -.defaultMargin),
                         
             collectionView.heightAnchor.constraint(equalToConstant: Constants.collectionViewHeight),
             collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),

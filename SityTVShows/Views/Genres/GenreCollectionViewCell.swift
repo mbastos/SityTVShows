@@ -11,7 +11,6 @@ class GenreCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Constants
     private enum Constants {
-        static let accentColor = UIColor(red: 255/255, green: 109/255, blue: 109/255, alpha: 1)
         static let inset: CGFloat = 3
     }
     
@@ -40,7 +39,7 @@ class GenreCollectionViewCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 3
         view.layer.borderWidth = 1
-        view.layer.borderColor = Constants.accentColor.cgColor
+        view.layer.borderColor = UIColor.genreTagColor.cgColor
         return view
     }()
     
@@ -48,7 +47,7 @@ class GenreCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 10)
-        label.textColor = Constants.accentColor
+        label.textColor = .genreTagColor
         return label
     }()
     

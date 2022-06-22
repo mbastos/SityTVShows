@@ -1,5 +1,5 @@
 //
-//  SeasonHeaderView.swift
+//  TitleHeaderView.swift
 //  SityTVShows
 //
 //  Created by mblabs on 21/06/22.
@@ -7,17 +7,17 @@
 
 import UIKit
 
-class SeasonHeaderView: UITableViewHeaderFooterView {
+class TitleHeaderView: UITableViewHeaderFooterView {
+    
+    private enum Constants {
+        static let horizontalMargin: CGFloat = 16
+        static let verticalMargin: CGFloat = 8
+    }
     
     var title: String? {
         didSet {
             label.text = title
         }
-    }
-    
-    private enum Constants {
-        static let horizontalMargin: CGFloat = 16
-        static let verticalMargin: CGFloat = 8
     }
     
     private lazy var label: UILabel = {

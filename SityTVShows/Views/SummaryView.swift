@@ -11,28 +11,29 @@ class SummaryView: UIView {
     
     // MARK: - Constants
     private enum Constants {
-        static let margin: CGFloat = 16
         static let spacing: CGFloat = 12
         static let summaryFont = UIFont.systemFont(ofSize: 12)
+        static let summaryBoldFont = UIFont.boldSystemFont(ofSize: 12)
     }
     
     // MARK: - Properties
     var summary: String = "" {
         didSet {
-            setupData()
+            if summary != oldValue {
+                setupData()
+            }
         }
     }
     
     // MARK: - Initializers
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init() {
+        super.init(frame: .zero)
         
         setupSubviews()
-        setupData()
     }
     
     convenience init(summary: String) {
-        self.init(frame: .zero)
+        self.init()
         self.summary = summary
         setupData()
     }
@@ -65,9 +66,9 @@ class SummaryView: UIView {
         addSubview(summaryLabel)
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.margin),
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.margin),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.margin),
+            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: .defaultMargin),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: .defaultMargin),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -.defaultMargin),
             
             summaryLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             summaryLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.spacing),
@@ -77,18 +78,11 @@ class SummaryView: UIView {
     }
     
     private func setupData() {
-        let data = Data(summary.utf8)
-        let attributedString = try? NSMutableAttributedString(
-            data: data,
-            options: [.documentType: NSAttributedString.DocumentType.html],
-            documentAttributes: nil)
+        let attributedString = NSMutableAttributedString.init(string: summary)
         
-        attributedString?.replaceFonts(with: Constants.summaryFont)
-        attributedString?.addAttribute(
-            .foregroundColor,
-            value: UIColor.secondaryLabel,
-            range: NSRange(location: 0, length: attributedString?.length ?? 0))
-        
-        summaryLabel.attributedText = attributedString?.trimmingCharacters(in: .whitespacesAndNewlines)
+        // Letting NSMutableAttributedString parse the whole HTML leads to various problems.
+        // It was causing internal inconsistencies in the table view (in ShowDetailsViewController).
+        attributedString.parseBoldHTML(boldFont: Constants.summaryBoldFont)
+        summaryLabel.attributedText = attributedString
     }
 }

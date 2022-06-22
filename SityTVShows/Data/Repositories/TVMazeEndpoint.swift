@@ -13,6 +13,7 @@ enum TVMazeEndpoint: Endpoint {
     case showEpisodes(showId: Int)
     case searchShows(query: String)
     case searchPeople(query: String)
+    case personCastCredits(personId: Int)
     
     var baseURL: String {
         return "https://api.tvmaze.com"
@@ -30,6 +31,8 @@ enum TVMazeEndpoint: Endpoint {
             return "/search/shows"
         case .searchPeople:
             return "/search/people"
+        case .personCastCredits(let personId):
+            return "/people/\(personId)/castcredits"
         }
     }
     
@@ -39,6 +42,8 @@ enum TVMazeEndpoint: Endpoint {
             return [URLQueryItem(name: "page", value: String(page))]
         case .searchShows(let query), .searchPeople(let query):
             return [URLQueryItem(name: "q", value: query)]
+        case .personCastCredits:
+            return [URLQueryItem(name: "embed", value: "show")]
         case .showMainInformation, .showEpisodes:
             return nil
         }

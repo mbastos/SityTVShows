@@ -27,13 +27,13 @@ extension CardViewType {
 class CardView: UIView {
     // MARK: - Constants
     private enum Constants {
-        static let margin: CGFloat = 16
         static let cardInset: CGFloat = 12
         static let imageWidthProportion: CGFloat = 0.25 // proportion of image width in relation to the card
         static let imageAspectRatio: CGFloat = 145/104 // height over width
         static let minimumImageWidth: CGFloat = 40
         static let ratingStarsWidth: CGFloat = 80
         static let ratingSpacing: CGFloat = 8 // spacing between stars and rating label
+        static let favoriteButtonSize: CGFloat = 32
     }
     
     // MARK: - Properties
@@ -142,9 +142,9 @@ class CardView: UIView {
         
         NSLayoutConstraint.activate([
             card.topAnchor.constraint(equalTo: self.topAnchor),
-            card.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.margin),
-            card.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.margin),
-            card.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Constants.margin),
+            card.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: .defaultMargin),
+            card.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -.defaultMargin),
+            card.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -.defaultMargin),
             
             imageView.topAnchor.constraint(equalTo: card.topAnchor, constant: Constants.cardInset),
             imageView.leadingAnchor.constraint(equalTo: card.leadingAnchor, constant: Constants.cardInset),
@@ -170,7 +170,9 @@ class CardView: UIView {
             
             favoriteButton.leadingAnchor.constraint(greaterThanOrEqualTo: ratingLabel.trailingAnchor),
             favoriteButton.trailingAnchor.constraint(equalTo: card.trailingAnchor, constant: -Constants.cardInset),
-            favoriteButton.bottomAnchor.constraint(equalTo: card.bottomAnchor, constant: -Constants.cardInset)
+            favoriteButton.bottomAnchor.constraint(equalTo: card.bottomAnchor, constant: -Constants.cardInset),
+            favoriteButton.widthAnchor.constraint(equalToConstant: Constants.favoriteButtonSize),
+            favoriteButton.heightAnchor.constraint(equalToConstant: Constants.favoriteButtonSize)
         ])
     }
     

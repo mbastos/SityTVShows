@@ -15,8 +15,6 @@ class SearchViewController: BaseViewController {
     private enum Constants {
         static let cellType = GenericTableViewCell<CardView>.self
         static let estimatedRowHeight: CGFloat = 120
-        static let searchMargin: CGFloat = 16
-        static let searchInset: CGFloat = 8
         static let contentVerticalInsets: CGFloat = 16
     }
     
@@ -199,9 +197,12 @@ class SearchViewController: BaseViewController {
                 })
         }).disposed(by: disposeBag)
         
-        viewModel.onGoToShowDetails.subscribe(onNext: { [weak self] (id) in
-            let viewModel = ShowDetailsViewModel(showId: id, repository: TVMazeRepository())
+        viewModel.onGoToShowDetails.subscribe(onNext: { [weak self] (viewModel) in
             self?.show(ShowDetailsViewController(viewModel: viewModel), sender: self)
+        }).disposed(by: disposeBag)
+        
+        viewModel.onGoToPersonDetails.subscribe(onNext: { [weak self] (viewModel) in
+            self?.show(PersonDetailsViewController(viewModel: viewModel), sender: self)
         }).disposed(by: disposeBag)
     }
 }

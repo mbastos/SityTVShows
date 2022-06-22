@@ -33,7 +33,6 @@ enum EpisodeViewStyle {
 class EpisodeView: UIView {
     // MARK: - Constants
     private enum Constants {
-        static let margin: CGFloat = 16
         static let imageAspectRatio: CGFloat = 140/250 // height over width
         static let spacing: CGFloat = 8 // spacing between title and info
     }
@@ -101,24 +100,24 @@ class EpisodeView: UIView {
         
         [episodeLabel, seasonLabel, airedAtLabel].forEach({ infoStackView.addArrangedSubview($0) })
         
-        let imgViewBottomConstraint = imgView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -Constants.margin)
+        let imgViewBottomConstraint = imgView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -.defaultMargin)
         imgViewBottomConstraint.priority = .defaultLow - 1
         
         NSLayoutConstraint.activate([
-            imgView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.margin),
-            imgView.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.margin),
+            imgView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: .defaultMargin),
+            imgView.topAnchor.constraint(equalTo: self.topAnchor, constant: .defaultMargin),
             imgView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: style.imageWidthProportion),
             imgView.heightAnchor.constraint(equalTo: imgView.widthAnchor, multiplier: Constants.imageAspectRatio),
             imgViewBottomConstraint,
             
             titleLabel.topAnchor.constraint(equalTo: imgView.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: imgView.trailingAnchor, constant: Constants.margin),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.margin),
+            titleLabel.leadingAnchor.constraint(equalTo: imgView.trailingAnchor, constant: .defaultMargin),
+            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -.defaultMargin),
             
             infoStackView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             infoStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.spacing),
             infoStackView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            infoStackView.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -Constants.margin)
+            infoStackView.bottomAnchor.constraint(lessThanOrEqualTo: self.bottomAnchor, constant: -.defaultMargin)
         ])
     }
     

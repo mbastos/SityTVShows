@@ -8,6 +8,10 @@
 import UIKit
 
 extension NSMutableAttributedString {
+    
+    private static let boldRegex = try! NSRegularExpression(pattern: "<b>(.*?)</b>", options: [])
+    private static let htmlRegex = try! NSRegularExpression(pattern: "</?.>", options: [])
+    
     func replaceFonts(with font: UIFont) {
         let baseFontDescriptor = font.fontDescriptor
         var changes = [NSRange: UIFont]()
@@ -35,5 +39,30 @@ extension NSMutableAttributedString {
         let length = string.distance(from: startLocation, to: endLocation) + 2
         let range = NSRange(location: location, length: length)
         return attributedSubstring(from: range)
+    }
+    
+    func parseBoldHTML(boldFont: UIFont) {
+        
+        let matches = NSMutableAttributedString.boldRegex
+            .matches(in: self.string, options: [], range: NSRange(location: 0, length: self.length))
+        
+        let boldEffect: [NSAttributedString.Key: Any] = [.font: boldFont]
+
+        matches.reversed().forEach { aMatch in
+            let valueRange = aMatch.range(at: 1)
+            let replacement = NSAttributedString(string: self.attributedSubstring(from: valueRange).string, attributes: boldEffect)
+            self.replaceCharacters(in: aMatch.range, with: replacement)
+        }
+        
+        self.stripHTMLTags()
+    }
+    
+    func stripHTMLTags() {
+        let matches = NSMutableAttributedString.htmlRegex
+            .matches(in: self.string, options: [], range: NSRange(location: 0, length: self.length))
+        
+        matches.reversed().forEach { aMatch in
+            self.replaceCharacters(in: aMatch.range, with: "")
+        }
     }
 }

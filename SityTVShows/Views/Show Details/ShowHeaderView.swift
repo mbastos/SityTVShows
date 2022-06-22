@@ -18,6 +18,7 @@ class ShowHeaderView: UIView {
         static let ratingStarsWidth: CGFloat = 80
         static let spacingToImage: CGFloat = 12
         static let itemSpacing: CGFloat = 16 // spacing between title, rating stars and rating label
+        static let favoriteButtonSize: CGFloat = 32
     }
     
     // MARK: - Properties
@@ -111,8 +112,10 @@ class ShowHeaderView: UIView {
             ratingLabel.topAnchor.constraint(equalTo: ratingStarsView.bottomAnchor, constant: Constants.itemSpacing),
             
             favoriteButton.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.trailingAnchor, constant: Constants.itemSpacing),
-            favoriteButton.bottomAnchor.constraint(equalTo: titleLabel.firstBaselineAnchor),
-            favoriteButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.horizontalMargin)
+            favoriteButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            favoriteButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.horizontalMargin),
+            favoriteButton.widthAnchor.constraint(equalToConstant: Constants.favoriteButtonSize),
+            favoriteButton.heightAnchor.constraint(equalToConstant: Constants.favoriteButtonSize)
         ])
     }
     

@@ -33,7 +33,7 @@ class Persistence {
     
     func addFavorite(withId id: Int, andName name: String) {
         let favoriteShow = FavoriteShow(id: id, name: name)
-        try! realm.write {
+        try? realm.write {
             realm.add(favoriteShow)
         }
         
@@ -42,7 +42,7 @@ class Persistence {
     
     func removeFavorite(withId id: Int) {
         guard let favoriteShow = favorite(withId: id) else { return }
-        try! realm.write {
+        try? realm.write {
             realm.delete(favoriteShow)
         }
         

@@ -33,3 +33,11 @@ extension UILabel {
         textColor = .secondaryLabel
     }
 }
+
+extension CGFloat {
+    static let defaultMargin: CGFloat = 16
+}
+
+extension UIColor {
+    static let genreTagColor = UIColor(red: 255/255, green: 109/255, blue: 109/255, alpha: 1)
+}
